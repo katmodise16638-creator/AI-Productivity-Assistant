@@ -21,7 +21,7 @@ const NAV = [
   { to: "/assistant", label: "AI Project Assistant", icon: BotMessageSquare },
 ] as const;
 
-function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
+function NavLinks({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
     <nav className="flex flex-col gap-1 px-3">
       {NAV.map(({ to, label, icon: Icon }) => (
@@ -44,7 +44,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarContent({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
     <div className="flex h-full flex-col bg-sidebar py-5">
       <div className="flex items-center gap-3 px-6 pb-6">
