@@ -1,4 +1,12 @@
-import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+} from "react";
 import {
   INITIAL_TASKS,
   PROJECT,
@@ -9,7 +17,7 @@ import {
 
 type ScheduleContextValue = {
   tasks: Task[];
-  setTasks: (tasks: Task[]) => void;
+  setTasks: Dispatch<SetStateAction<Task[]>>;
   addTask: () => void;
   updateTask: (id: string, patch: Partial<Task>) => void;
   removeTask: (id: string) => void;
