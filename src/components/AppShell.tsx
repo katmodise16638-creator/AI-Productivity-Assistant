@@ -5,6 +5,7 @@ import {
   ChartNoAxesColumn,
   HardHat,
   LayoutDashboard,
+  Mail,
   Menu,
   Sparkles,
   X,
@@ -19,6 +20,7 @@ const NAV = [
   { to: "/schedule", label: "Weekly Schedule", icon: CalendarRange },
   { to: "/progress", label: "Progress Tracker", icon: ChartNoAxesColumn },
   { to: "/assistant", label: "AI Project Assistant", icon: BotMessageSquare },
+  { to: "/smart-email", label: "Smart Email", icon: Mail },
 ] as const;
 
 function NavLinks({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
