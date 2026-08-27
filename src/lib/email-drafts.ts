@@ -36,6 +36,11 @@ function closing(tone: EmailTone): string {
   return `Best regards,\nProject Manager\n${PROJECT_NAME}`;
 }
 
+function normaliseDetail(text: string): string {
+  const detail = text.trim() || "the current construction activities";
+  return detail.replace(/[.!?]+$/g, "");
+}
+
 function buildBody(
   tone: EmailTone,
   recipient: string,
@@ -44,7 +49,7 @@ function buildBody(
 ): string {
   const open = opening(tone, recipient);
   const close = closing(tone);
-  const detail = description.trim() || "the current construction activities";
+  const detail = normaliseDetail(description);
   const content = paragraphs.map((p) => p.replace("{{detail}}", detail)).join("\n\n");
   return `${open}\n\n${content}\n\n${close}`;
 }
