@@ -3,6 +3,7 @@ import {
   BotMessageSquare,
   CalendarRange,
   ChartNoAxesColumn,
+  CloudSun,
   HardHat,
   LayoutDashboard,
   Mail,
@@ -21,6 +22,7 @@ const NAV = [
   { to: "/progress", label: "Progress Tracker", icon: ChartNoAxesColumn },
   { to: "/assistant", label: "AI Project Assistant", icon: BotMessageSquare },
   { to: "/smart-email", label: "Smart Email", icon: Mail },
+  { to: "/weather", label: "AI Weather Assistant", icon: CloudSun },
 ] as const;
 
 function NavLinks({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
