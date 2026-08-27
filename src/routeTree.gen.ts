@@ -15,6 +15,7 @@ import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as ScheduleRouteImport } from './routes/schedule'
 import { Route as SmartEmailRouteImport } from './routes/smart-email'
+import { Route as WeatherRouteImport } from './routes/weather'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const SmartEmailRoute = SmartEmailRouteImport.update({
   path: '/smart-email',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WeatherRoute = WeatherRouteImport.update({
+  id: '/weather',
+  path: '/weather',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/progress': typeof ProgressRoute
   '/schedule': typeof ScheduleRoute
   '/smart-email': typeof SmartEmailRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/progress': typeof ProgressRoute
   '/schedule': typeof ScheduleRoute
   '/smart-email': typeof SmartEmailRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,14 +79,27 @@ export interface FileRoutesById {
   '/progress': typeof ProgressRoute
   '/schedule': typeof ScheduleRoute
   '/smart-email': typeof SmartEmailRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/assistant' | '/planner' | '/progress' | '/schedule' | '/smart-email'
+    | '/'
+    | '/assistant'
+    | '/planner'
+    | '/progress'
+    | '/schedule'
+    | '/smart-email'
+    | '/weather'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/assistant' | '/planner' | '/progress' | '/schedule' | '/smart-email'
+    | '/'
+    | '/assistant'
+    | '/planner'
+    | '/progress'
+    | '/schedule'
+    | '/smart-email'
+    | '/weather'
   id:
     | '__root__'
     | '/'
@@ -87,6 +108,7 @@ export interface FileRouteTypes {
     | '/progress'
     | '/schedule'
     | '/smart-email'
+    | '/weather'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -96,6 +118,7 @@ export interface RootRouteChildren {
   ProgressRoute: typeof ProgressRoute
   ScheduleRoute: typeof ScheduleRoute
   SmartEmailRoute: typeof SmartEmailRoute
+  WeatherRoute: typeof WeatherRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -142,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SmartEmailRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/weather': {
+      id: '/weather'
+      path: '/weather'
+      fullPath: '/weather'
+      preLoaderRoute: typeof WeatherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -152,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProgressRoute: ProgressRoute,
   ScheduleRoute: ScheduleRoute,
   SmartEmailRoute: SmartEmailRoute,
+  WeatherRoute: WeatherRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
