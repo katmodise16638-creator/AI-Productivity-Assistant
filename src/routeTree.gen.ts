@@ -14,6 +14,7 @@ import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as ScheduleRouteImport } from './routes/schedule'
+import { Route as SmartEmailRouteImport } from './routes/smart-email'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const ScheduleRoute = ScheduleRouteImport.update({
   path: '/schedule',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SmartEmailRoute = SmartEmailRouteImport.update({
+  id: '/smart-email',
+  path: '/smart-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/planner': typeof PlannerRoute
   '/progress': typeof ProgressRoute
   '/schedule': typeof ScheduleRoute
+  '/smart-email': typeof SmartEmailRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/planner': typeof PlannerRoute
   '/progress': typeof ProgressRoute
   '/schedule': typeof ScheduleRoute
+  '/smart-email': typeof SmartEmailRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,23 @@ export interface FileRoutesById {
   '/planner': typeof PlannerRoute
   '/progress': typeof ProgressRoute
   '/schedule': typeof ScheduleRoute
+  '/smart-email': typeof SmartEmailRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assistant' | '/planner' | '/progress' | '/schedule'
+  fullPaths:
+    '/' | '/assistant' | '/planner' | '/progress' | '/schedule' | '/smart-email'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assistant' | '/planner' | '/progress' | '/schedule'
-  id: '__root__' | '/' | '/assistant' | '/planner' | '/progress' | '/schedule'
+  to:
+    '/' | '/assistant' | '/planner' | '/progress' | '/schedule' | '/smart-email'
+  id:
+    | '__root__'
+    | '/'
+    | '/assistant'
+    | '/planner'
+    | '/progress'
+    | '/schedule'
+    | '/smart-email'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +95,7 @@ export interface RootRouteChildren {
   PlannerRoute: typeof PlannerRoute
   ProgressRoute: typeof ProgressRoute
   ScheduleRoute: typeof ScheduleRoute
+  SmartEmailRoute: typeof SmartEmailRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +135,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScheduleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/smart-email': {
+      id: '/smart-email'
+      path: '/smart-email'
+      fullPath: '/smart-email'
+      preLoaderRoute: typeof SmartEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +151,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlannerRoute: PlannerRoute,
   ProgressRoute: ProgressRoute,
   ScheduleRoute: ScheduleRoute,
+  SmartEmailRoute: SmartEmailRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
