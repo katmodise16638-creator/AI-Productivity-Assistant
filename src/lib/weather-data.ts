@@ -98,9 +98,9 @@ const SEVERE_CONDITIONS: WeatherCondition[] = ["Heavy Rain", "Thunderstorms"];
 const RAINY_CONDITIONS: WeatherCondition[] = ["Light Rain", "Heavy Rain", "Thunderstorms"];
 
 function formatTaskNames(tasks: Task[]): string {
-  if (tasks.length === 1) return tasks[0].name;
+  if (tasks.length === 1) return tasks[0]!.name;
   const allButLast = tasks.slice(0, -1).map((t) => t.name);
-  return `${allButLast.join(", ")} and ${tasks[tasks.length - 1].name}`;
+  return `${allButLast.join(", ")} and ${tasks[tasks.length - 1]!.name}`;
 }
 
 /** Generate delay/risk/recommendation warnings from mock weather and the live schedule. */
